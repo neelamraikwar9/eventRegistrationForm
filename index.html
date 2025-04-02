@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>HTML + CSS</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Event Registration Form</h1>
+    <form id="registrationForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name"/>
+    <br>
+    <br>
+    <label for="email">Email Address:</label>
+    <input type="email" id="email"/>
+    <br>
+    <br>
+
+    <label>Event Type:</label>
+    <br>
+    <label for="Conference">
+    <input type="radio" name="type" value="Conference" id="Conference"/>Conference
+    </label>
+    <br>
+    <label for="Workshop">
+    <input type="radio" name="type" value="Workshop" id="Workshop"/>Workshop
+    </label>
+    <br>
+    <label for="Networking">
+    <input type="radio" name="type" value="Networking" id="Networking"/>Networking
+    </label>
+    <br>
+    <br>
+
+    <label>Dietary Restrictions:</label>
+    <br>
+    <label for="Vegetarian">
+    <input type="checkbox" name="dietary" value="Vegetarian" id="Vegetarian"/>Vegetarian
+    </label>
+    <br>
+    <label for="Vegan">
+    <input type="checkbox" name="dietary" value="Vegan" id="Vegan"/>Vegan
+    </label>
+    <br>
+    <label for="Gluten">
+    <input type="checkbox" name="dietary" value="Gluten-free" id="Gluten"/>Gluten-free
+    </label>
+    <br>
+    <br>
+
+    <label>T-shirt Size:</label>
+    <select id="sizeOptions">
+      <option value="Small">Small</option>
+      <option value="Medium">Medium</option>
+      <option value="Large">Large</option>
+    </select>
+    <br>
+    <br>
+
+    <input type="submit" value="Register"/> 
+  </form>
+
+  <div id="resultRegistrationForm"></div>
+
+  <script>
+    const registrationForm = document.getElementById("registrationForm")
+    // console.log(registrationForm)
+    registrationForm.addEventListener("submit", function(event){
+      event.preventDefault()
+
+      const name = document.getElementById("name").value
+      const email = document.getElementById("email").value
+      const type = document.querySelector('input[name="type"]:checked').value
+
+      const dietary = document.querySelectorAll('input[name="dietary"]:checked')
+      let selectedDietary = []
+      for(let i = 0; i < dietary.length; i++){
+        selectedDietary.push(dietary[i].value)
+      }
+      
+      const sizeOptions = document.getElementById("sizeOptions").value
+
+      // console.log(selectedDietary, sizeOptions)
+
+      const userInputValues = `<h2>Registration Details:</h2>
+      <p><strong>Name: </strong>${name}</p>
+      <p><strong>Email: </strong>${email}</p>
+      <p><strong>Event Type: </strong>${type}</p>
+      <p><strong>Dietary Restrictions: </strong>${selectedDietary}</p>
+      <p><strong>T-shirt Size: </strong>${sizeOptions}</p>`
+
+      const divElement = document.getElementById("resultRegistrationForm")
+      divElement.innerHTML = userInputValues
+    }) 
+  </script>
+
+    <!-- <script>
+      const registrationForm = document.getElementById("registrationForm")
+      // console.log(registrationForm) 
+      registrationForm.addEventListener("submit", function(event){
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const eventSelect = document.querySelector('input[name="event"]:checked').value
+
+        const dietary = document.querySelectorAll('input[name="dietary"]: checked')
+        let selectedDietary = []
+        for(let i = 0; i < dietary.length; i++){
+          selectedDietary.push(dietary[i].value) 
+        }
+
+        const sizeOptions = document.getElementById("sizeOptions").value;
+      
+        console.log(selectedDietary, sizeOptions)  -->
+
+        <!-- // const dietary = document.querySelectorAll('input[name="dietary"]:checked');
+        // let selectedDietary = [];
+        // for(let i = 0; i < dietary.length; i++){
+        //     selectedDietary.push(dietary[i].value ) 
+        // }
+      //   const sizeOptions = document.getElementById("sizeOptions").value;
+
+      //   console.log(name, email, event)
+      
+
+      // const userRegisterValues = `<h2>Submitted Information</h2>
+      // <p><h4>Name: </h4>${name}</p>
+      // <p><h4>Email Address: </h4>${email}</p>
+      // <p><h4>Event Type: </h4>${event}</p>
+   
+      // <p><h4>T-shirt Size: </h4>${sizeOptions}</p>`
+
+      // const divElement = document.getElementById("resultRegistrationForm");
+      // divElement.innerHTML = userRegisterValues;
+    }) -->
+
+    </script>
+  </body>
+  </body>
+</html>
+
+<!-- // <p><h4>Dietary Restrictions: </h4>${selectedDietary(", ")}</p>  -->
